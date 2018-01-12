@@ -4,7 +4,7 @@ defmodule Nidavellir.Mixfile do
   def project do
     [app: :nidavellir,
      version: "0.1.0",
-     elixir: "~> 1.5.3",
+     elixir: "~> 1.6.0",
      start_permanent: Mix.env == :prod,
      deps: deps()]
   end

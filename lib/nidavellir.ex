@@ -19,13 +19,10 @@ defmodule Nidavellir do
   end
 
   def start(_type, _args) do
-    import Supervisor.Spec, warn: false
+    sup =  Nidavellir.Supervisor.start_link([])
 
-    children = [
-      worker(Redix, [[], [name: :redix]])
-    ]
+    IO.inspect Process.whereis(Nidavellir.Mqtt)
 
-    opts = [strategy: :one_for_one, name: Nidavellir.RedixSupervisor]
-    Supervisor.start_link(children, opts)
+    sup
   end
 end
