@@ -19,9 +19,9 @@ defmodule Nidavellir do
   end
 
   def start(_type, _args) do
-    sup =  Nidavellir.Supervisor.start_link([])
+    sup = Nidavellir.Supervisor.start_link([])
 
-    IO.inspect Process.whereis(Nidavellir.Mqtt)
+    Nidavellir.Mqtt.Setup.start()
 
     sup
   end

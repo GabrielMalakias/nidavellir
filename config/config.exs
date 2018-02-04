@@ -30,7 +30,8 @@ use Mix.Config
 #     import_config "#{Mix.env}.exs"
 #
 config :nidavellir,
-  client_prefix: 'nidavelir',
-  host: 'localhost',
-  port: '1883',
-  timeout: 200
+  client_prefix: "nidavellir",
+  host: "localhost",
+  port: 1883,
+  timeout: 200,
+  reconnect_in: 20

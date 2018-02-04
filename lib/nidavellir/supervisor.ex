@@ -8,11 +8,12 @@ defmodule Nidavellir.Supervisor do
   def init(:ok) do
     children = [
       worker(Redix, [[], [name: :redix]]),
-      worker(Nidavellir.Mqtt, [%{}])
+      worker(Nidavellir.Mqtt.Connection, [%{}, [name: :mqtt]]),
+      worker(Nidavellir.Mqtt.ReconnectServer, [[]])
     ]
 
     opts = [strategy: :one_for_one]
 
-    Supervisor.init(children, opts)
+    supervise(children, opts)
   end
 end
