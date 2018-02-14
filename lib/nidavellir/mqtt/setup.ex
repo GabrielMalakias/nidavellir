@@ -1,6 +1,12 @@
 defmodule Nidavellir.Mqtt.Setup do
+  @moduledoc """
+  It just starts an mqtt connection using the right parameters
+  """
+
+  alias Nidavellir.Mqtt.Connection, as: Connection
+
   def start do
-    {:ok, pid} = Nidavellir.Mqtt.Connection.connect
+    {:ok, pid} = Connection.connect
 
     subscribe(pid)
   end
@@ -8,16 +14,14 @@ defmodule Nidavellir.Mqtt.Setup do
   defp subscribe(pid) do
     options = [topics: topics(), qoses: [0], id: packet_id()]
 
-    Nidavellir.Mqtt.Connection.subscribe(pid, options)
+    Connection.subscribe(pid, options)
   end
 
   defp packet_id do
-    :rand.uniform(65535)
+    :rand.uniform(65_535)
   end
 
   defp topics do
     ["#"]
   end
 end
-
-

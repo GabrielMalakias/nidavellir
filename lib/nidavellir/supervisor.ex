@@ -1,4 +1,8 @@
 defmodule Nidavellir.Supervisor do
+  @moduledoc """
+  It just creates the supervisor tree for this project
+  """
+
   use Supervisor
 
   def start_link(opts) do
@@ -7,9 +11,10 @@ defmodule Nidavellir.Supervisor do
 
   def init(:ok) do
     children = [
-      worker(Redix, [[], [name: :redix]]),
       worker(Nidavellir.Mqtt.Connection, [%{}, [name: :mqtt]]),
-      worker(Nidavellir.Mqtt.ReconnectServer, [[]])
+      worker(Nidavellir.Mqtt.ReconnectServer, [[]])#,
+
+      #      Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: Nidavellir.Router, options: [port: 4001])
     ]
 
     opts = [strategy: :one_for_one]

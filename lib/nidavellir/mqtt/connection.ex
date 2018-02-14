@@ -1,10 +1,15 @@
 require IEx
 defmodule Nidavellir.Mqtt.Connection do
+  @moduledoc """
+  This module is the main responsible for dealing with
+  the Mqtt connection and sending it to agents
+  """
+
+  alias Nidavellir.Component, as: Component
   use Hulaaki.Client
 
   def start_link(state, opts) do
     process_name = Keyword.get(opts, :name, __MODULE__)
-
 
     GenServer.start_link(__MODULE__, state, name: process_name)
   end
@@ -28,7 +33,7 @@ defmodule Nidavellir.Mqtt.Connection do
   end
 
   def connect(connection_pid) do
-    Nidavellir.Mqtt.Connection.connect(connection_pid, config())
+    connect(connection_pid, config())
 
     {:ok, connection_pid}
   end
@@ -50,8 +55,7 @@ defmodule Nidavellir.Mqtt.Connection do
   def on_subscribed_publish(options) do
     message = Keyword.get(options, :message)
 
-    # Calls the agent
-    # Nidavellir.Trigget.Agent.start_link(message)
+    Component.handle_message(message)
 
     IO.inspect message
   end

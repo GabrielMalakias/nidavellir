@@ -14,6 +14,9 @@ defmodule Nidavellir do
       :world
 
   """
+
+  alias Nidavellir.Mqtt.Setup, as: Setup
+
   def hello do
     :world
   end
@@ -21,7 +24,7 @@ defmodule Nidavellir do
   def start(_type, _args) do
     sup = Nidavellir.Supervisor.start_link([])
 
-    Nidavellir.Mqtt.Setup.start()
+    Setup.start()
 
     sup
   end

@@ -10,14 +10,16 @@ defmodule Nidavellir.Mixfile do
   end
 
   def application do
-    [extra_applications: [:logger, :redix],
+    [extra_applications: [:logger, :cowboy, :plug],
     mod: { Nidavellir, []}]
   end
 
   defp deps do
     [
-      {:redix, ">= 0.0.0"},
-      {:hulaaki, "~> 0.1.1"}
+      {:cowboy, "~> 1.0.0"},
+      {:plug, "~> 1.0"},
+      {:hulaaki, "~> 0.1.1"},
+      {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false}
     ]
   end
 end
