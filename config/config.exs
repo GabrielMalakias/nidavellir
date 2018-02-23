@@ -27,11 +27,5 @@ use Mix.Config
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
 #
-#     import_config "#{Mix.env}.exs"
-#
-config :nidavellir,
-  client_prefix: "nidavellir",
-  host: "localhost",
-  port: 1883,
-  timeout: 200,
-  reconnect_in: 20
+import_config "#{Mix.env}.exs"
+
