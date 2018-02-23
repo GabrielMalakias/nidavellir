@@ -14,7 +14,6 @@ install:
   - make
   - sudo make install
   - cd ..
-  - sudo cp -R ./mosquitto/certs/ /etc/mosquitto/certs/
   - sudo cp ./mosquitto/mosquitto.conf /etc/mosquitto/mosquitto.conf
 before_script:
   - mosquitto -d -c /etc/mosquitto/mosquitto.conf
