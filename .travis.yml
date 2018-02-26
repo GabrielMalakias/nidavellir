@@ -1,7 +1,7 @@
+sudo: required
 language: elixir
 elixir: '1.6'
 otp_release: '20.0'
-sudo: required
 environment:
   - MIX_ENV=test
 before_install:
@@ -14,6 +14,8 @@ install:
   - make
   - sudo make install
   - cd ..
+  - sudo cp -R ./mosquitto/certs/ /etc/mosquitto/certs/
+  - sudo cp ./mosquitto/mosquitto.conf /etc/mosquitto/mosquitto.conf
 before_script:
   - mosquitto -d -c /etc/mosquitto/mosquitto.conf
   - mix local.hex --force
