@@ -1,6 +1,8 @@
 # Nidavellir
 
-**TODO: Add description**
+> The name that the Vikings used to refer to the dwarves’ homeland – it’s probably Nidavellir - Norse-Mythology.org
+
+### NOT READY YET
 
 ## Installation
 

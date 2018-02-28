@@ -14,18 +14,18 @@ defmodule Nidavellir do
       :world
 
   """
+
+  alias Nidavellir.Mqtt.Setup, as: Setup
+
   def hello do
     :world
   end
 
   def start(_type, _args) do
-    import Supervisor.Spec, warn: false
+    sup = Nidavellir.Supervisor.start_link([])
 
-    children = [
-      worker(Redix, [[], [name: :redix]])
-    ]
+    Setup.start()
 
-    opts = [strategy: :one_for_one, name: Nidavellir.RedixSupervisor]
-    Supervisor.start_link(children, opts)
+    sup
   end
 end

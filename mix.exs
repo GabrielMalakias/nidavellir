@@ -4,20 +4,22 @@ defmodule Nidavellir.Mixfile do
   def project do
     [app: :nidavellir,
      version: "0.1.0",
-     elixir: "~> 1.5.3",
+     elixir: "~> 1.6.0",
      start_permanent: Mix.env == :prod,
      deps: deps()]
   end
 
   def application do
-    [extra_applications: [:logger, :redix],
+    [extra_applications: [:logger, :cowboy, :plug],
     mod: { Nidavellir, []}]
   end
 
   defp deps do
     [
-      {:redix, ">= 0.0.0"},
-      {:hulaaki, "~> 0.1.1"}
+      {:cowboy, "~> 1.0.0"},
+      {:plug, "~> 1.0"},
+      {:hulaaki, "~> 0.1.1"},
+      {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false}
     ]
   end
 end
